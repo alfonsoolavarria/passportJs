@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <%if (portal == 'cognito') { %>
+      <h3>Bienvenido usuario: <%=user.username%>  del Portal <%=portal%> </h3>
+      <%}else if (portal == 'facebook'){%>
+        <h3>Bienvenido usuario: <%=user._json.name%>  del Portal <%=portal%> </h3>
+      <%}else{%>
+        <h3>Bienvenido usuario: <%=user.displayName%> del Portal <%=portal%> </h3>
+      <%}%>
+    <table style="width:100%" cellspacing="1" cellpadding="3" border="0" bgcolor="#1E679A">
+      <tr style="text-align: center;">
+          <td>
+              <font color="#FFFFFF" face="arial, verdana, helvetica">
+                  <b>Detalles del usuario</b>
+              </font>
+          </td>
+      </tr>
+      <tr>
+          <td bgcolor="#ffffcc">
+            <%if (portal == 'cognito') { %>
+              <font face="arial, verdana, helvetica">
+                <p>sub: <%=user.sub%>,</p>
+                <p>email_verified: <%=user.email_verified%>,</p>
+                <p>name: <%=user.name%>,</p>
+                <p>email: <%=user.email%>,</p>
+                <p>username: <%=user.username%></p>
+              </font>
+            <% }else if (portal == 'facebook') {%>
+              <p>Photo: <img src="<%=user.photos[0].value%>" alt="">,</p>
+              <p>Name: <%=user._json.name%>,</p>
+              <p>Email: <%=user._json.email%>,</p>
+              <p>Gender: <%=user._json.gender%>,</p>
+            <%}else{%>
+              <p>Photo: <img src="<%=user.photos[0].value%>" alt="">,</p>
+              <p>Name: <%=user.displayName%>,</p>
+              <p>Email: <%=user.emails[0].value%>,</p>
+              <p>Gender: <%=user.gender%>,</p>
+            <%}%>
+          </td>
+      </tr>
+    </table>
+  </body>
+</html>

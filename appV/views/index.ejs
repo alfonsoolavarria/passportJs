@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <form action="/auth2/tests/cognito/" method="post">
+      <h3>Autenticaci&oacute;n con Cognito</h3><br>
+      <div>
+        <label>Username:</label>
+        <input type="text" name="username"/>
+      </div>
+      <div>
+        <label>Password:</label>
+        <input type="password" name="password"/>
+      </div>
+      <div>
+        <input type="submit" value="Log In"/>
+      </div>
+    </form>
+    <br><br>
+    <form action="#" method="post">
+      <h3>Autenticaci&oacute;n con Facebook</h3><br>
+      <div>
+        <a href="/auth2/tests/facebook/"><img height="42" width="260" src="/public/images/facebook.png" alt=""></a>
+      </div>
+    </form>
+    <br><br>
+    <form action="" method="post">
+      <h3>Autenticaci&oacute;n con Google</h3><br>
+      <div>
+        <a href="/auth2/tests/google/"><img height="42" width="260" src="/public/images/google.png" alt=""></a>
+      </div>
+    </form>
+    <form action="/auth2/tests/signup/" method="post">
+      <h3>Registro de usuario con Cognito</h3><br>
+      <div>
+        <label>Name:</label>
+        <input type="text" name="name"/>
+      </div>
+      <div>
+        <label>Username:</label>
+        <input type="text" name="username"/>
+      </div>
+      <div>
+        <label>Password:</label>
+        <input type="password" name="password"/>
+      </div>
+      <div>
+        <label>Email:</label>
+        <input type="email" name="email"/>
+      </div>
+      <div>
+        <input type="submit" value="Sing Up"/>
+      </div>
+    </form>
+  </body>
+</html>
