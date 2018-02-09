@@ -13,12 +13,13 @@
  */
 exports.socialScopes = {
   'facebook': {
-    scope: 'email'
+    scope: ['email']
   },
   'google': {
     scope:[
       'openid',
       'email',
+      'https://www.googleapis.com/auth/user.birthday.read',
       'profile',
     ]
   },
@@ -29,3 +30,19 @@ exports.socialScopes = {
  * @description List of valid social authentication providers.
  */
 exports.validSocialProviders = ['facebook', 'google', 'cognito']
+
+/*Conatel*/
+exports.userPoolId = 'xxx'
+exports.clientIdC = 'xxx'
+exports.region = 'xx'
+
+/*Facebook*/
+exports.clientIDF = 'xx'
+exports.clientSecretF = 'xx'
+exports.callbackURLFacebook = 'xx/xx/xxx'
+exports.profileFields = ['xx']
+
+/*Google*/
+exports.clientIDG = 'xxxx'
+exports.clientSecretG = 'xxxx-xxxx'
+exports.callbackURLGoogle = '/xxx/xxx/xxx'

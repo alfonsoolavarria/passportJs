@@ -7,13 +7,38 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
-  <body>
+  <style>
+  p {
+    margin: 0 auto;
+    width: 348px;
+    }
+
+  </style>
+  <body style="background-color: ghostwhite;">
+    <div style="width: 215px;margin: 0 auto;">
+      <img src="/public/images/conatel.png" alt="Conatel">
+    </div>
     <%if (portal == 'cognito') { %>
-      <h3>Bienvenido usuario: <%=user.username%>  del Portal <%=portal%> </h3>
+      <h3 style="margin: 0 auto;width: 60px;">Bienvenido</h3><br>
+      <div style="width: 60px;margin: 0 auto;" class="">
+        <img src="<%=user.picture%>" style="margin: 0 auto;max-height: 70px;float: none;border-radius: 50%;" alt="">
+        <h4 style="font-size: 19px;margin-left: 44%;"><%=user.username%></h4>
+      </div>
+
       <%}else if (portal == 'facebook'){%>
-        <h3>Bienvenido usuario: <%=user._json.name%>  del Portal <%=portal%> </h3>
+        <h3 style="margin: 0 auto;width: 60px;">Bienvenido</h3><br>
+        <div style="width: 60px;margin: 0 auto;" class="">
+          <img src="<%=user.photos[0].value%>" alt="" style="margin: 0 auto;max-height: 70px;float: none;border-radius: 50%;">
+          <h4 style="font-size: 19px;margin-left: 44%;"><%=user._json.name%></h4>
+        </div>
+
       <%}else{%>
-        <h3>Bienvenido usuario: <%=user.displayName%> del Portal <%=portal%> </h3>
+        <h3 style="margin: 0 auto;width: 60px;">Bienvenido</h3><br>
+        <div style="width: 60px;margin: 0 auto;" class="">
+          <img src="<%=user.photos[0].value%>" style="margin: 0 auto;max-height: 70px;float: none;border-radius: 50%;" alt="">
+          <h4 style="font-size: 19px;margin-left: 44%;"><%=user.displayName%></h4>
+        </div>
+
       <%}%>
     <table style="width:100%" cellspacing="1" cellpadding="3" border="0" bgcolor="#1E679A">
       <tr style="text-align: center;">
@@ -28,21 +53,25 @@
             <%if (portal == 'cognito') { %>
               <font face="arial, verdana, helvetica">
                 <p>sub: <%=user.sub%>,</p>
-                <p>email_verified: <%=user.email_verified%>,</p>
-                <p>name: <%=user.name%>,</p>
-                <p>email: <%=user.email%>,</p>
-                <p>username: <%=user.username%></p>
+                <!--<p>Photo: <img src="<%=user.picture%>" alt="">,</p>-->
+                <p>Email_verified: <%=user.email_verified%>,</p>
+                <p>Name: <%=user.name%>,</p>
+                <p>Email: <%=user.email%>,</p>
+                <p>Username: <%=user.username%>,</p>
+                <p>Birthday: <%=user.birthdate%></p>
               </font>
             <% }else if (portal == 'facebook') {%>
-              <p>Photo: <img src="<%=user.photos[0].value%>" alt="">,</p>
+              <!--<p>Photo: <img src="<%=user.photos[0].value%>" alt="">,</p>-->
               <p>Name: <%=user._json.name%>,</p>
               <p>Email: <%=user._json.email%>,</p>
               <p>Gender: <%=user._json.gender%>,</p>
+              <p>Birthday: <%=user._json.birthday%></p>
             <%}else{%>
-              <p>Photo: <img src="<%=user.photos[0].value%>" alt="">,</p>
+              <!--<p>Photo: <img src="<%=user.photos[0].value%>" alt="">,</p>-->
               <p>Name: <%=user.displayName%>,</p>
               <p>Email: <%=user.emails[0].value%>,</p>
               <p>Gender: <%=user.gender%>,</p>
+              <p>Birthday: <%=user._json.birthday%> "YYYY-MM-DD"</p>
             <%}%>
           </td>
       </tr>

@@ -3,8 +3,9 @@
 const passport = require('passport')
 const variablesScope = require('../variablesScope.js')
 var AWS = require('aws-sdk');
+const Key = require('../variablesScope.js')
 
-AWS.config.update({region: 'us-east-1'})
+AWS.config.update({region: Key.region})
 
 /**
  * Starts a social authentication using passport.
@@ -88,14 +89,17 @@ const socialCallback = (req, res, next) => {
  */
 const signUp = (req, res, next) => {
 
+  const birthdate = req.body.birthdate
   const username = req.body.username
   const password = req.body.password
+  const picture = req.body.picture
   const email = req.body.email
   const name = req.body.name
 
-  if (username.length<=0 || password.length<=0 || email.length<=0 || name.length<=0) {
+
+  if (username.length<=0 || password.length<=0 || email.length<=0 || name.length<=0 || birthdate.length<=0) {
     res.status(400).json({
-      error: 'username/password/email Incorrect '
+      error: 'username/password/email/birthday Incorrect '
     })
     return
   }
@@ -106,8 +110,8 @@ const signUp = (req, res, next) => {
   }
 
   if (validateEmail(email)) {
-    const userPool = new AWS.CognitoIdentityServiceProvider.CognitoUserPool({UserPoolId:USERPOLLID,ClientId:CLIENTID});
-    userPool.signUp(username, password, [{Name:'email',Value:email},{Name:'name',Value:name}], null, (err, result) => {
+    const userPool = new AWS.CognitoIdentityServiceProvider.CognitoUserPool({UserPoolId:Key.userPoolId,ClientId:Key.clientIdC});
+    userPool.signUp(username, password, [{Name:'email',Value:email},{Name:'name',Value:name},{Name:'birthdate', Value:birthdate},{Name:'picture', Value:picture}], null, (err, result) => {
       if (err) {
         return res.status(505).send({code: 505,success: false, error:err});
       }
@@ -139,7 +143,7 @@ const verificationCode = (req, res, next) => {
   const userPool = new AWS.CognitoIdentityServiceProvider();
 
   var params = {
-    ClientId: CLIENTID, /* required */
+    ClientId: Key.clientIdC, /* required */
     ConfirmationCode: code, /* required */
     Username: username, /* required */
     //ForceAliasCreation: true || false,
